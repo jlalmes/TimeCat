@@ -152,10 +152,22 @@ async function publishPackage(pkgName, version, runIfNotDry) {
 
     step(`Publishing ${pkgName}...`)
     try {
-        await runIfNotDry('yarn', ['publish', '--new-version', version, '--access', 'public'], {
-            cwd: pkgRoot,
-            stdio: 'pipe'
-        })
+        await runIfNotDry(
+            'yarn',
+            [
+                'publish',
+                '--new-version',
+                version,
+                '--access',
+                'public',
+                '--registry',
+                'https://provinceinnovation.bytesafe.dev/r/default/'
+            ],
+            {
+                cwd: pkgRoot,
+                stdio: 'pipe'
+            }
+        )
         console.log(chalk.green(`Successfully published ${pkgName}@${version}`))
     } catch (e) {
         if (e.stderr.match(/previously published/)) {
