@@ -48,8 +48,8 @@ const defaultReplayOptions = {
     heatPoints: true,
     timeMode: 'durationTime',
     fastForward: [2, 8],
-    disableScrolling: true,
-    disableScaling: false
+    disableScaling: false,
+    disableScrolling: true
 }
 
 export class Player {

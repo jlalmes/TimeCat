@@ -281,6 +281,7 @@ export interface ReplayOptions {
     timeMode?: 'recordingTime' | 'durationTime'
     fastForward?: number[]
     disableScaling?: false
+    disableScrolling?: boolean
 }
 
 export interface ReplayInternalOptions extends ReplayOptions {
@@ -290,7 +291,6 @@ export interface ReplayInternalOptions extends ReplayOptions {
     mode: 'live' | 'default'
     target: string | HTMLElement | Window
     timeMode: 'recordingTime' | 'durationTime'
-    disableScrolling?: boolean
 }
 
 export interface ReplayData {
