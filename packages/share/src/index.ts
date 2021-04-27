@@ -7,6 +7,8 @@
  *
  */
 
+import type { playerWatchers } from '@timecat/recorder/src/watchers'
+
 export type ValueOf<T> = T[keyof T]
 export type ValueOfKey<T, K extends keyof T> = T[K]
 export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never
@@ -286,6 +288,8 @@ export interface ReplayOptions {
         disablePointerEvents?: boolean
         disableScrollbars?: boolean
     }
+    enableWatchers?: Array<keyof typeof playerWatchers>
+    onRecorderData?: (data: RecordData) => void
 }
 
 export interface ReplayInternalOptions extends ReplayOptions {

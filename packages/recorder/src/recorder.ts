@@ -43,7 +43,7 @@ interface RecordOptionsBase {
     font?: boolean
     visibleChange?: boolean
     visibleChangeKeepTime?: number
-    disableWatchers?: Array<keyof typeof watchers>
+    disableWatchers?: Array<keyof typeof watchers | 'Snapshot'>
     keepAlive?: number | false
 }
 
@@ -221,7 +221,7 @@ export class RecorderModule extends Pluginable {
         }
 
         return watchersList.filter(watcher => {
-            return !~disableWatchers.indexOf(watcher.name as keyof typeof watchers)
+            return !~disableWatchers.indexOf(watcher.name as keyof typeof watchers | 'Snapshot')
         })
     }
 
