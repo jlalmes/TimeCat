@@ -77,8 +77,11 @@ function createAttributes(vNode: VNode, node: Element): void {
         setAttribute(node as HTMLElement, name, val)
     }
     if (vNode.tag === 'a') {
-        // node.setAttribute('target', '_blank')
-        node.setAttribute('href', 'javascript:void(0)')
+        const href = node.getAttribute('href')
+        console.log({ href })
+        if (href && !href?.includes('#')) {
+            node.setAttribute('href', 'javascript:void(0)')
+        }
         node.removeAttribute('target')
     }
 }

@@ -129,10 +129,10 @@ describe('serialize and deserialize', () => {
 
     test('A href start with #', () => {
         const html = document.createElement('div')
-        html.innerHTML = `<a href="#/xxx"></a>`
+        html.innerHTML = `<a href="#request-demo"></a>`
         const initial = html.firstElementChild!
         const result = convertVNode(createElement(initial))!
-        expect(result.outerHTML).toEqual(`<a href="#/xxx"></a>`)
+        expect(result.outerHTML).toEqual(`<a href="http://localhost/#request-demo"></a>`)
     })
 
     test('element with scroll', () => {
