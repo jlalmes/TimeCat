@@ -124,7 +124,7 @@ describe('serialize and deserialize', () => {
         <a href="https://timecatjs.com/"></a>
         `)[0]
         const result = convertVNode(createElement(initial))!
-        expect(result.outerHTML).toEqual('<a href="https://timecatjs.com/" target="_blank"></a>')
+        expect(result.outerHTML).toEqual('<a href="javascript:void(0)"></a>')
     })
 
     test('A href start with #', () => {
@@ -132,7 +132,7 @@ describe('serialize and deserialize', () => {
         html.innerHTML = `<a href="#/xxx"></a>`
         const initial = html.firstElementChild!
         const result = convertVNode(createElement(initial))!
-        expect(result.outerHTML).toEqual(`<a target="_blank"></a>`)
+        expect(result.outerHTML).toEqual(`<a href="#/xxx"></a>`)
     })
 
     test('element with scroll', () => {
