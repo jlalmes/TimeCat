@@ -78,7 +78,7 @@ function createAttributes(vNode: VNode, node: Element): void {
     }
     if (vNode.tag === 'a') {
         // node.setAttribute('target', '_blank')
-        node.removeAttribute('href')
+        node.setAttribute('href', 'javascript:void(0)')
         node.removeAttribute('target')
     }
 }
