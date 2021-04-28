@@ -124,7 +124,7 @@ describe('serialize and deserialize', () => {
         <a href="https://timecatjs.com/"></a>
         `)[0]
         const result = convertVNode(createElement(initial))!
-        expect(result.outerHTML).toEqual('<a href="javascript:void(0)"></a>')
+        expect(result.outerHTML).toEqual('<a href="javascript:void(0)" data-coshop-href-frozen="true"></a>')
     })
 
     test('A href start with #', () => {
