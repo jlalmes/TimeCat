@@ -59,7 +59,7 @@ export function completeAttrHref(str: string, node?: Element) {
                     .filter(key => ~['src', 'href'].indexOf(key))
                     .forEach(key => {
                         const newHref = createURL(str, relationHref).href
-                        if (node.getAttribute(key) !== newHref) {
+                        if (node.getAttribute(key) !== newHref && !node.getAttribute('data-coshop-href-frozen')) {
                             node.setAttribute(key, newHref)
                         }
                     })

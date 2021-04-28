@@ -78,11 +78,11 @@ function createAttributes(vNode: VNode, node: Element): void {
     }
     if (vNode.tag === 'a') {
         const href = node.getAttribute('href')
-        console.log({ href })
-        if (href && !href?.includes('#')) {
+        if (href && !href.includes('/#')) {
             node.setAttribute('href', 'javascript:void(0)')
+            node.removeAttribute('target')
+            node.setAttribute('data-coshop-href-frozen', 'true')
         }
-        node.removeAttribute('target')
     }
 }
 
