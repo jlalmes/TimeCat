@@ -164,7 +164,8 @@ export class PlayerModule {
                 visibleChange: false,
                 rewriteResource: [],
                 disableWatchers,
-                keepAlive: false
+                keepAlive: false,
+                isPlayerRecorder: true
             })
 
             this.recorder.onData((data, next) => {

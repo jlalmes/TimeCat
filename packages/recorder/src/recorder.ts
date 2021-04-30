@@ -45,6 +45,7 @@ interface RecordOptionsBase {
     visibleChangeKeepTime?: number
     disableWatchers?: Array<keyof typeof watchers | 'Snapshot'>
     keepAlive?: number | false
+    isPlayerRecorder?: true
 }
 
 interface RecordInternalOptions extends Required<RecordOptions> {
@@ -291,7 +292,7 @@ export class RecorderModule extends Pluginable {
 
         options.context.G_RECORD_RELATED_ID = relatedId
 
-        if (options.context === this.options.rootContext) {
+        if (options.context === this.options.rootContext && !this.options.isPlayerRecorder) {
             emit({
                 type: RecordType.HEAD,
                 data: headData,
@@ -316,7 +317,7 @@ export class RecorderModule extends Pluginable {
             }
         })
 
-        if (options.emitLocationImmediate) {
+        if (options.emitLocationImmediate && !this.options.isPlayerRecorder) {
             const locationInstance = this.watchersInstance.get(LocationWatcher.name) as InstanceType<
                 typeof LocationWatcher
             >
@@ -324,7 +325,9 @@ export class RecorderModule extends Pluginable {
         }
 
         this.watcherResolve()
-        await this.recordSubIFrames(options.context)
+        if (!this.options.isPlayerRecorder) {
+            await this.recordSubIFrames(options.context)
+        }
     }
 
     private async waitingSubIFramesLoaded(context: Window) {
